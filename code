@@ -1,0 +1,8 @@
+wiederhole solange nicht haus
+  wenn ist zufall
+    links-wendung
+  ende, sonst
+    schritt
+  ende
+ende
+
