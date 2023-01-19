@@ -1,5 +1,5 @@
 {
-  "main": "./src/index.js",
+  "main": "src/cli.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
