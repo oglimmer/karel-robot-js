@@ -4,5 +4,9 @@ wiederhole solange nicht haus
   ende, sonst
     schritt
   ende
+  aufheben
+  wenn ist norden
+    platzieren
+  ende
 ende
-
+say "ich bin am ziel"

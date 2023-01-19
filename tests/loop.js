@@ -1,6 +1,6 @@
 
 
-const {parse} = require('../src/interpreter');
+import { parse } from '../src/interpreter.js';
 
 test('loop_1', () => {
   const root = parse(["WIEDERHOLE", "3-mal", "schritt", "ende"]);

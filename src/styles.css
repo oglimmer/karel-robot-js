@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 400px
+}
+.box {
+    border: 1px dotted #bbbbbb;
+    height:40px
+}
+.selected {
+    border: 1px solid black !important;
+}
+button {
+    margin: 2px
+}

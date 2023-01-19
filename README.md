@@ -28,8 +28,8 @@ you can also create a text file (code.txt) and put the commands into it, then ru
 cat code.txt | node src/index.js
 ```
 
-you can use the environment variable DELAY to change the delay in millis between each step.
+you can also change the delay between 2 steps and the initial board configuration:
 
 ```bash
-cat code | DELAY=1000 node src/index.js
+cat code.txt | node src/index.js --field '{"walls":[[3,3],[3,4],[3,5]],"packages":[[7,7,2]],"home":[9,9],"meeple":[9,0]}' --d 100
 ```

@@ -1,48 +1,16 @@
-"use strict";
-
 // ************************************************************************
 /* logging */
 
 function log(msg) {
-  if (process.env.JEST_WORKER_ID === undefined) {
+  if (typeof process !== 'object' || process.env.JEST_WORKER_ID === undefined) {
    console.log(msg)
   }
 }
 
 // ************************************************************************
-/* the parse and main method */
-
-// called after reading stdin
-async function main(input) {
-  // TODO: create playfield via configuration (e.g. applicaton parameter)
-  const playfield = new Playfield(10, 10);
-  playfield.getField(5,5).content = Field.HOME;
-  playfield.getField(0,1).content = Field.WALL;
-  playfield.getField(1,1).content = Field.WALL;
-  playfield.getField(2,1).content = Field.WALL;
-  playfield.getField(5,0).content = Field.WALL;
-  playfield.getField(5,1).content = Field.WALL;
-  playfield.getField(5,2).content = Field.WALL;
-  playfield.getField(3,7).content = Field.WALL;
-  playfield.getField(3,8).content = Field.WALL;
-  playfield.getField(3,9).content = Field.WALL;
-  playfield.getField(7,7).content = Field.WALL;
-  playfield.getField(8,7).content = Field.WALL;
-  playfield.getField(9,7).content = Field.WALL;
-  new Meeple(playfield.getField(0,0), playfield); // registers itself to the playfield
-  
-  try {
-    const root = parse(input);
-    await root.run(playfield);
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-module.exports.main = main
-
 /* this parses input: Array<string> into an AST and returns the root of the AST */
-function parse(input) {
+
+export function parse(input) {
   // TOKENIZE
   const tokenizer = new Tokenizer();
   const tokens = tokenizer.tokenize(input);
@@ -57,13 +25,10 @@ function parse(input) {
   return root;
 }
 
-module.exports.parse = parse
-
-
 // ************************************************************************
 /* Meeple, Field Playfield */
 
-class Meeple {
+export class Meeple {
   static NORTH = 0;
   static EAST = 1;
   static SOUTH = 2;
@@ -108,7 +73,7 @@ class Meeple {
   }
 }
 
-class Field {
+export class Field {
   static HOME = 1;
   static WALL = 2;
   constructor(x, y, playfield) {
@@ -124,38 +89,34 @@ class Field {
   isHome() {
     return (this.content & Field.HOME) !== 0;
   }
-  getContent() {
-    if(this.playfield.getMeeple().getField() === this) {
-      switch(this.playfield.getMeeple().direction) {
-        case Meeple.NORTH:
-          return "^"
-        case Meeple.EAST:
-          return ">"
-        case Meeple.SOUTH:
-          return "v"
-        case Meeple.WEST:
-          return "<"
-      }
-    }
-    switch(this.content) {
-      case Field.HOME:
-        return "H"
-      case Field.WALL:
-        return "W"
-      default:
-        return " "
-    }
+  clearFlag(flag) {
+    this.content &= ~flag;
+  }
+  setFlag(flag) {
+    this.content |= flag;
+  }
+  toggleFlag(flag) {
+    this.content ^= flag;
+  }
+  isMeeple() {
+    return this.playfield.getMeeple() && this.playfield.getMeeple().getField() === this;
+  }
+  setMeeple() {
+    this.playfield.getMeeple().setField(this.x, this.y);
   }
 }
 
-class Playfield {
-  constructor(x, y) {
+export class Playfield {
+  constructor(x, y, ObjClazz) {
     this.fields = []
     this.x = x;
     this.y = y;
-    for (let ix = 0 ; ix < x ; ix++ ) {
-      for (let iy = 0 ; iy < y ; iy++ ) {
-        this.fields.push(new Field(ix, iy, this));
+    this.meeple = null;
+    this.packages = 0;
+    for (let iy = 0 ; iy < y ; iy++ ) {
+     for (let ix = 0 ; ix < x ; ix++ ) {
+        const newObj = new ObjClazz(ix, iy, this);
+        this.fields.push(newObj);
       }
     }
   }
@@ -171,25 +132,6 @@ class Playfield {
   }
   existsField(x,y) {
     return !(x < 0 || y < 0 || x >= this.x || y >= this.y);
-  }
-  print() {
-    console.clear();
-    let buff = "";
-    for (let iy = 0 ; iy < this.y ; iy++ ) {
-      buff += `---------------------------------------------------\n`
-      // for (let ix = 0 ; ix < this.x ; ix++ ) {
-      //   const field = this.getField(ix, iy);
-      //   buff += `| ${field.x}:${field.y}`
-      // }
-      // buff += `|\n`
-      for (let ix = 0 ; ix < this.x ; ix++ ) {
-        const field = this.getField(ix, iy);
-        buff += `| ${field.getContent()} ${field.packages>0?field.packages:" "}`
-      }
-      buff += `|\n`
-    }
-    buff += `---------------------------------------------------\n`
-    log(buff);
   }
 }
 
@@ -220,10 +162,12 @@ class ConditionHandler {
 // ************************************************************************
 /* Command classes */
 
-const DELAY = process.env.DELAY | 20;
+export const DELAY = {
+  value: typeof process === 'object' ? process.env.DELAY | 20 : 20
+};
 
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
+function delay() {
+  return new Promise(resolve => setTimeout(resolve, DELAY.value));
 }
 
 /* All Commands have a (possible) successor */
@@ -233,8 +177,10 @@ class BaseCommand {
     return node;
   }
   async run(playfield) {
-    playfield.print();
-    await delay(DELAY);
+    if (playfield.print) {
+      playfield.print();
+    }
+    await delay();
     if(this.nested) {
       await this.nested.run(playfield);
     }
@@ -252,7 +198,7 @@ class StepCommand extends BaseCommand {
   }
 }
 
-class TurnLeftCommand extends BaseCommand {  
+class TurnLeftCommand extends BaseCommand {
   async run(playfield) {
     playfield.getMeeple().turnLeft();
     await super.run(playfield);
@@ -262,7 +208,7 @@ class TurnLeftCommand extends BaseCommand {
   }
 }
 
-class PlacePackageCommand extends BaseCommand {  
+class PlacePackageCommand extends BaseCommand {
   async run(playfield) {
     if (playfield.getMeeple().package === true && playfield.getMeeple().getField().packages < 8) {
       playfield.getMeeple().getField().packages++;
@@ -275,7 +221,7 @@ class PlacePackageCommand extends BaseCommand {
   }
 }
 
-class PickupPackageCommand extends BaseCommand {  
+class PickupPackageCommand extends BaseCommand {
   async run(playfield) {
     if (playfield.getMeeple().package !== true && playfield.getMeeple().getField().packages > 0) {
       playfield.getMeeple().getField().packages--;
@@ -297,9 +243,9 @@ class IfConditionCommand extends BaseCommand {
   }
   async run(playfield) {
     if (this.conditionHandler.checkIf(playfield)) {
-      await this.conditionalStatement.run(playfield);  
+      await this.conditionalStatement.run(playfield);
     } else if (this.elseStatement) {
-      await this.elseStatement.run(playfield);  
+      await this.elseStatement.run(playfield);
     }
     await super.run(playfield);
   }
@@ -317,7 +263,7 @@ class LoopCounterCommand extends BaseCommand {
   async run(playfield) {
     let i = 0;
     while(i++ < this.couter) {
-      await this.conditionalStatement.run(playfield);  
+      await this.conditionalStatement.run(playfield);
     }
     await super.run(playfield);
   }
@@ -334,7 +280,7 @@ class LoopConditionCommand extends BaseCommand {
   }
   async run(playfield) {
     while(this.conditionHandler.checkIf(playfield)) {
-      await this.conditionalStatement.run(playfield);  
+      await this.conditionalStatement.run(playfield);
     }
     await super.run(playfield);
   }
@@ -490,21 +436,21 @@ class StepCommandBuilder {
   }
 }
 
-class TurnLeftCommandBuilder {  
+class TurnLeftCommandBuilder {
   processAdditionalTokens(tokens) { return 0; }
   build() {
     return new TurnLeftCommand();
   }
 }
 
-class PlacePackageCommandBuilder {  
+class PlacePackageCommandBuilder {
   processAdditionalTokens(tokens) { return 0; }
   build() {
     return new PlacePackageCommand();
   }
 }
 
-class PickupPackageCommandBuilder {  
+class PickupPackageCommandBuilder {
   processAdditionalTokens(tokens) { return 0; }
   build() {
     return new PickupPackageCommand();
@@ -521,7 +467,7 @@ class IfConditionBuilder {
     if (tokens.length >= astBuilder.i + 3 && tokens[astBuilder.i + 2].type === Tokenizer.ELSE) {
       const astBuilderElse = new ASTBuilder();
       astBuilderElse.build(tokens.slice(astBuilder.i + 3), Tokenizer.END);
-      this.elseStatement = astBuilderElse.root;  
+      this.elseStatement = astBuilderElse.root;
       return astBuilder.i + 3 + astBuilderElse.i;
     } else {
       return astBuilder.i + 2;
@@ -765,6 +711,9 @@ class Tokenizer {
   }
   /* input is an Array<string> and will be tokenized into keywords and their parameters */
   tokenize(input) {
+    if (!Array.isArray(input)) {
+      input = [input];
+    }
     const resultToken = [];
     for (const row of input) {
       const rowTrimmedAndUppercase = row.trim().toUpperCase();

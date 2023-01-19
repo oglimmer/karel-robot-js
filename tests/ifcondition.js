@@ -1,6 +1,6 @@
 
 
-const {parse} = require('../src/interpreter');
+import { parse } from '../src/interpreter.js';
 
 test('simple_wenn_1', () => {
   const root = parse(["wenn ist haus", "schritt", "ende"]);
