@@ -11,6 +11,7 @@ function log(msg) {
 /* this parses input: Array<string> into an AST and returns the root of the AST */
 
 export function parse(input) {
+  GlobalMethodRegistry.singleton.clear();
   // TOKENIZE
   const tokenizer = new Tokenizer();
   const tokens = tokenizer.tokenize(input);
@@ -586,7 +587,10 @@ class TpBuilder {
 class GlobalMethodRegistry {
   static singleton = new GlobalMethodRegistry()
   constructor() {
-    this.registry = {}
+    this.clear();
+  }
+  clear() {
+    this.registry = {};
   }
 }
 
