@@ -9,12 +9,14 @@
 <body>
     <div id="app"></div>
     <script type="module">
-        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-        import { rootComponent, UIFieldView } from './vue.js'
+        import { createApp } from './vue.js'
+        import { rootComponent, UIFieldView } from './vue-custom.js'
+        import { PrismEditor } from "./prismeditor.esm.js";
 
-        const app = createApp(rootComponent)
-        app.component("UIField", UIFieldView)
-        app.mount('#app')
+        const app = createApp(rootComponent);
+        app.component("UIField", UIFieldView);
+        app.component('prism-editor', PrismEditor);
+        app.mount('#app');
     </script>
 </body>
 </html>

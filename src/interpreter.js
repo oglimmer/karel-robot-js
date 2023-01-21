@@ -171,7 +171,8 @@ function delay() {
 }
 
 /* All Commands have a (possible) successor */
-class BaseCommand {
+export class BaseCommand {
+  static abort = false;
   add(node) {
     this.nested = node;
     return node;
@@ -179,6 +180,9 @@ class BaseCommand {
   async run(playfield) {
     if (playfield.print) {
       playfield.print();
+    }
+    if (BaseCommand.abort) {
+      throw "Run aborted.";
     }
     await delay();
     if(this.nested) {
