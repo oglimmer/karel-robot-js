@@ -1,4 +1,4 @@
-import { onMounted, getCurrentInstance  } from './vue.js'
+import { onMounted, getCurrentInstance  } from './lib/vue.js'
 import {parse, Playfield, Field, Meeple, BaseCommand} from './interpreter.js'
 import hljs from './highlight/highlight.js';
 import karel from './highlight/languages/karel.min.js'
