@@ -172,6 +172,9 @@ export const rootComponent = {
             <div>
                 <button @click="runCode" v-if="!running">Run Code</button>
                 <button @click="stopCode" v-if="running">Stop</button>
+                <span style="margin-left: 20px">
+                  <a href="https://raw.githubusercontent.com/oglimmer/karel-robot-js/main/docs/command.svg" target="_target">Show Syntax Diagram</a>
+                <span>
             </div>
         </div>
     </div>`
