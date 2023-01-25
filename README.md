@@ -45,3 +45,38 @@ you can also change the delay between 2 steps and the initial board configuratio
 ```bash
 cat code.txt | node src/cli.js --field '{"walls":[[3,3],[3,4],[3,5]],"packages":[[7,7,2]],"home":[9,9],"meeple":[9,0]}' --d 100
 ```
+
+# Syntax
+
+The syntax consists of commands and blocks.
+
+## block:
+
+A block is one or more commands
+
+## command:
+
+![command](docs/command.svg)
+
+
+## example
+
+```
+lerne linkssonstzufall
+  wenn ist zufall
+    links-wendung
+  ende, sonst
+    schritt
+  ende
+ende
+wiederhole solange nicht haus
+  linkssonstzufall
+ende
+wiederhole 4-mal
+  wenn nicht osten
+    schritt
+    log "move east"
+  ende
+ende
+say "we have done it!"
+```

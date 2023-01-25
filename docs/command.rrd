@@ -1,0 +1,63 @@
+Diagram(
+    Choice(0,
+        ('schritt'),
+        ('links-wendung'),
+        ('aufheben'),
+        ('platzieren'),
+        NonTerminal('method name as STRING'),
+        Stack(
+            Sequence(
+                'wiederhole',
+                Choice(0,
+                    Sequence(
+                        'solange',
+                        Choice(0,'is','nicht'),
+                        Choice(0,'zufall','haus','wand','norden','osten','süden','westen')
+                    ), // Sequence
+                    Sequence(
+                        NonTerminal('repetition as NUMBER'),
+                        '-mal'
+                    ) // Sequence
+                ) // Choice
+            ),  // Sequence
+            NonTerminal('block'), 
+            'ende'
+        ), // Stack
+        Stack(
+            Sequence(
+                'wenn',
+                Choice(0,'is','nicht'),
+                Choice(0,'zufall','haus','wand','norden','osten','süden','westen')
+            ),  // Sequence
+            NonTerminal('block'), 
+            'ende'
+        ), // Stack
+        Stack(
+            Sequence(
+                'lerne',
+                NonTerminal('name as STRING')
+            ),  // Sequence
+            NonTerminal('block'), 
+            'ende'
+        ), // Stack
+        Sequence(
+            'say',
+            '"',
+            NonTerminal('message as STRING'),
+            '"'
+        ), // Sequence
+        Sequence(
+            'log',
+            '"',
+            NonTerminal('message as STRING'),
+            '"'
+        ), // Sequence
+        Sequence(
+            'tp',
+            NonTerminal('x as NUMBER'),
+            ',',
+            NonTerminal('y as NUMBER')
+        ) // Sequence
+    ) // Choice
+) // Diagram
+
