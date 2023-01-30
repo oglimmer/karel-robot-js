@@ -1,19 +1,44 @@
 .container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    min-width: 400px;
-    max-width: 400px;
+    min-width: 490px;
+    max-width: 490px;
     margin-right: 10px;
 }
 .box {
     border: 1px dotted #bbbbbb;
-    height:40px
+    height:48px;
+    background-color: #d88f80;
 }
 .selected {
     border: 1px solid black !important;
 }
 button {
     margin: 2px
+}
+.meeple_up {
+  background-image: url(assets/Pixel_Art_Character_Back.jpg);
+  background-size: 48px 48px
+}
+.meeple_left {
+  background-image: url(assets/Pixel_Art_Character_Left_Side.jpg);
+  background-size: 48px 48px
+}
+.meeple_down {
+  background-image: url(assets/Pixel_Art_Character_Front.jpg);
+  background-size: 48px 48px
+}
+.meeple_right {
+  background-image: url(assets/Pixel_Art_Character_Right_Side.jpg);
+  background-size: 48px 48px
+}
+.house {
+  background-image: url(assets/House.jpg);
+  background-size: 48px 48px
+}
+.wall {
+  background-image: url(assets/Wall.jpg);
+  background-size: 48px 48px
 }
 
 .my-editor {

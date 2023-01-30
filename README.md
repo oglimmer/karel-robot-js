@@ -2,6 +2,7 @@
 
 This project provides a command-line-interface (CLI) or a html interface (WEB).
 
+The Pixel Art was created by https://www.fiverr.com/pixelquato
 
 ## Running WEB
 

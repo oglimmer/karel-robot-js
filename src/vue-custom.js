@@ -16,13 +16,13 @@ class HtmlField extends Field {
         }
         switch (this.playfield.getMeeple().direction) {
             case Meeple.NORTH:
-                return "^";
+                return "meeple_up";
             case Meeple.EAST:
-                return ">";
+                return "meeple_right";
             case Meeple.SOUTH:
-                return "v";
+                return "meeple_down";
             case Meeple.WEST:
-                return "<";
+                return "meeple_left";
         }
     }
 }
@@ -44,14 +44,26 @@ export const UIFieldView = {
     },
     computed: {
         dynamicClasses() {
-            return this.selected?["selected"]:[]
+            const classes = []
+            if (this.selected) {
+              classes.push("selected")
+            }
+            if (this.wall) {
+              classes.push("wall")
+            }
+            if (this.meeple) {
+              classes.push(this.meeple)
+            } else if (this.house) {
+              classes.push("house")
+            }
+            return classes
         }
     },
     template: `<div class="box" :class="dynamicClasses" @click="onClicked">
-        {{ house? "H" : "" }}
-        {{ wall? "W" : "" }}
-        {{ packages? packages : "" }}
-        {{ meeple? meeple : "" }}
+    <div v-if="this.packages > 0">
+      <img src="assets/Paket.jpg" height="24" width="24" />
+      <span style="font-weight:bolder; font-size:1.4em">{{packages}}</span>
+    </div>
     </div>`
 }
 
@@ -174,7 +186,7 @@ export const rootComponent = {
                 <button @click="stopCode" v-if="running">Stop</button>
                 <span style="margin-left: 20px">
                   <a href="https://raw.githubusercontent.com/oglimmer/karel-robot-js/main/docs/command.svg" target="_target">Show Syntax Diagram</a>
-                <span>
+                </span>
             </div>
         </div>
     </div>`
