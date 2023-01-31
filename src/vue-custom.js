@@ -155,22 +155,21 @@ export const rootComponent = {
                 getCurrentInstance().data.uiField.push(e);
             });
             new Meeple(playfield.fields[0], playfield);
-            playfield.fields[3].setFlag(Field.WALL);
-            playfield.fields[13].setFlag(Field.WALL);
-            playfield.fields[23].setFlag(Field.WALL);
-            playfield.fields[33].setFlag(Field.WALL);
-            playfield.fields[43].setFlag(Field.WALL);
+            let i = 0;
+            while (i++<10) {
+              playfield.fields[Math.floor(Math.random()*99)+1].setFlag(Field.WALL);
+            }
             playfield.fields[55].packages = 2;
             playfield.fields[99].setFlag(Field.HOME);
         })
     },
     template: `<div class="row">
-        <div class="container column">
+        <div class="container columna">
             <UIField v-for="f in uiField" :key="f.id" :id="f.id"
                 :selected="f.id===selectedId" :clicked="clickedOnField"
                 :house="f.isHome()" :wall="f.isWall()" :packages="f.packages" :meeple="f.getMeepleDirection()" />
         </div>
-        <div class="column">
+        <div class="columnb">
             <div>
                 <button @click="makeHome">Make Home</button>
                 <button @click="toggleWall">Toggle Wall</button>
