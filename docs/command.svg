@@ -11,7 +11,7 @@
 <path d="M60 31h225"></path>
 <path d="M375 31h225"></path>
 <rect x="285" y="20" width="90" height="22" rx="10" ry="10"></rect>
-<text x="330" y="35">schritt</text>
+<text x="330" y="35">move</text>
 </g>
 <path d="M600 31h20"></path>
 <path d="M40 31a10 10 0 0 1 10 10v12a10 10 0 0 0 10 10"></path>
@@ -19,7 +19,7 @@
 <path d="M60 63h195"></path>
 <path d="M405 63h195"></path>
 <rect x="255" y="52" width="150" height="22" rx="10" ry="10"></rect>
-<text x="330" y="67">links-wendung</text>
+<text x="330" y="67">turnleft</text>
 </g>
 <path d="M600 63a10 10 0 0 0 10 -10v-12a10 10 0 0 1 10 -10"></path>
 <path d="M40 31a10 10 0 0 1 10 10v44a10 10 0 0 0 10 10"></path>
@@ -27,7 +27,7 @@
 <path d="M60 95h220"></path>
 <path d="M380 95h220"></path>
 <rect x="280" y="84" width="100" height="22" rx="10" ry="10"></rect>
-<text x="330" y="99">aufheben</text>
+<text x="330" y="99">pickup</text>
 </g>
 <path d="M600 95a10 10 0 0 0 10 -10v-44a10 10 0 0 1 10 -10"></path>
 <path d="M40 31a10 10 0 0 1 10 10v76a10 10 0 0 0 10 10"></path>
@@ -35,7 +35,7 @@
 <path d="M60 127h210"></path>
 <path d="M390 127h210"></path>
 <rect x="270" y="116" width="120" height="22" rx="10" ry="10"></rect>
-<text x="330" y="131">platzieren</text>
+<text x="330" y="131">drop</text>
 </g>
 <path d="M600 127a10 10 0 0 0 10 -10v-76a10 10 0 0 1 10 -10"></path>
 <path d="M40 31a10 10 0 0 1 10 10v108a10 10 0 0 0 10 10"></path>
@@ -57,7 +57,7 @@
 <path d="M80 191h0"></path>
 <path d="M200 191h0"></path>
 <rect x="80" y="180" width="120" height="22" rx="10" ry="10"></rect>
-<text x="140" y="195">wiederhole</text>
+<text x="140" y="195">repeat</text>
 </g>
 <path d="M200 191h10"></path>
 <g>
@@ -71,7 +71,7 @@
 <path d="M230 191h0"></path>
 <path d="M320 191h0"></path>
 <rect x="230" y="180" width="90" height="22" rx="10" ry="10"></rect>
-<text x="275" y="195">solange</text>
+<text x="275" y="195">until</text>
 </g>
 <path d="M320 191h10"></path>
 <g>
@@ -90,7 +90,7 @@
 <path d="M350 223h0"></path>
 <path d="M420 223h0"></path>
 <rect x="350" y="212" width="70" height="22" rx="10" ry="10"></rect>
-<text x="385" y="227">nicht</text>
+<text x="385" y="227">not</text>
 </g>
 <path d="M420 223a10 10 0 0 0 10 -10v-12a10 10 0 0 1 10 -10"></path>
 </g>
@@ -102,7 +102,7 @@
 <path d="M460 191h0"></path>
 <path d="M540 191h0"></path>
 <rect x="460" y="180" width="80" height="22" rx="10" ry="10"></rect>
-<text x="500" y="195">zufall</text>
+<text x="500" y="195">random</text>
 </g>
 <path d="M540 191h20"></path>
 <path d="M440 191a10 10 0 0 1 10 10v12a10 10 0 0 0 10 10"></path>
@@ -110,7 +110,7 @@
 <path d="M460 223h10"></path>
 <path d="M530 223h10"></path>
 <rect x="470" y="212" width="60" height="22" rx="10" ry="10"></rect>
-<text x="500" y="227">haus</text>
+<text x="500" y="227">house</text>
 </g>
 <path d="M540 223a10 10 0 0 0 10 -10v-12a10 10 0 0 1 10 -10"></path>
 <path d="M440 191a10 10 0 0 1 10 10v44a10 10 0 0 0 10 10"></path>
@@ -118,7 +118,7 @@
 <path d="M460 255h10"></path>
 <path d="M530 255h10"></path>
 <rect x="470" y="244" width="60" height="22" rx="10" ry="10"></rect>
-<text x="500" y="259">wand</text>
+<text x="500" y="259">wall</text>
 </g>
 <path d="M540 255a10 10 0 0 0 10 -10v-44a10 10 0 0 1 10 -10"></path>
 <path d="M440 191a10 10 0 0 1 10 10v76a10 10 0 0 0 10 10"></path>
@@ -126,7 +126,7 @@
 <path d="M460 287h0"></path>
 <path d="M540 287h0"></path>
 <rect x="460" y="276" width="80" height="22" rx="10" ry="10"></rect>
-<text x="500" y="291">norden</text>
+<text x="500" y="291">north</text>
 </g>
 <path d="M540 287a10 10 0 0 0 10 -10v-76a10 10 0 0 1 10 -10"></path>
 <path d="M440 191a10 10 0 0 1 10 10v108a10 10 0 0 0 10 10"></path>
@@ -134,7 +134,7 @@
 <path d="M460 319h5"></path>
 <path d="M535 319h5"></path>
 <rect x="465" y="308" width="70" height="22" rx="10" ry="10"></rect>
-<text x="500" y="323">osten</text>
+<text x="500" y="323">east</text>
 </g>
 <path d="M540 319a10 10 0 0 0 10 -10v-108a10 10 0 0 1 10 -10"></path>
 <path d="M440 191a10 10 0 0 1 10 10v140a10 10 0 0 0 10 10"></path>
@@ -142,7 +142,7 @@
 <path d="M460 351h5"></path>
 <path d="M535 351h5"></path>
 <rect x="465" y="340" width="70" height="22" rx="10" ry="10"></rect>
-<text x="500" y="355">süden</text>
+<text x="500" y="355">south</text>
 </g>
 <path d="M540 351a10 10 0 0 0 10 -10v-140a10 10 0 0 1 10 -10"></path>
 <path d="M440 191a10 10 0 0 1 10 10v172a10 10 0 0 0 10 10"></path>
@@ -150,7 +150,7 @@
 <path d="M460 383h0"></path>
 <path d="M540 383h0"></path>
 <rect x="460" y="372" width="80" height="22" rx="10" ry="10"></rect>
-<text x="500" y="387">westen</text>
+<text x="500" y="387">west</text>
 </g>
 <path d="M540 383a10 10 0 0 0 10 -10v-172a10 10 0 0 1 10 -10"></path>
 </g>
@@ -172,7 +172,7 @@
 <path d="M485 415h0"></path>
 <path d="M545 415h0"></path>
 <rect x="485" y="404" width="60" height="22" rx="10" ry="10"></rect>
-<text x="515" y="419">-mal</text>
+<text x="515" y="419">-times</text>
 </g>
 </g>
 <path d="M560 415a10 10 0 0 0 10 -10v-204a10 10 0 0 1 10 -10"></path>
@@ -190,7 +190,7 @@
 <path d="M70 499h230"></path>
 <path d="M360 499h230"></path>
 <rect x="300" y="488" width="60" height="22" rx="10" ry="10"></rect>
-<text x="330" y="503">ende</text>
+<text x="330" y="503">end</text>
 </g>
 <path d="M590 499h10"></path>
 <path d="M600 499h0"></path>
@@ -207,7 +207,7 @@
 <path d="M180 531h0"></path>
 <path d="M240 531h0"></path>
 <rect x="180" y="520" width="60" height="22" rx="10" ry="10"></rect>
-<text x="210" y="535">wenn</text>
+<text x="210" y="535">if</text>
 </g>
 <path d="M240 531h10"></path>
 <g>
@@ -226,7 +226,7 @@
 <path d="M270 563h0"></path>
 <path d="M340 563h0"></path>
 <rect x="270" y="552" width="70" height="22" rx="10" ry="10"></rect>
-<text x="305" y="567">nicht</text>
+<text x="305" y="567">not</text>
 </g>
 <path d="M340 563a10 10 0 0 0 10 -10v-12a10 10 0 0 1 10 -10"></path>
 </g>
@@ -238,7 +238,7 @@
 <path d="M380 531h0"></path>
 <path d="M460 531h0"></path>
 <rect x="380" y="520" width="80" height="22" rx="10" ry="10"></rect>
-<text x="420" y="535">zufall</text>
+<text x="420" y="535">random</text>
 </g>
 <path d="M460 531h20"></path>
 <path d="M360 531a10 10 0 0 1 10 10v12a10 10 0 0 0 10 10"></path>
@@ -246,7 +246,7 @@
 <path d="M380 563h10"></path>
 <path d="M450 563h10"></path>
 <rect x="390" y="552" width="60" height="22" rx="10" ry="10"></rect>
-<text x="420" y="567">haus</text>
+<text x="420" y="567">house</text>
 </g>
 <path d="M460 563a10 10 0 0 0 10 -10v-12a10 10 0 0 1 10 -10"></path>
 <path d="M360 531a10 10 0 0 1 10 10v44a10 10 0 0 0 10 10"></path>
@@ -254,7 +254,7 @@
 <path d="M380 595h10"></path>
 <path d="M450 595h10"></path>
 <rect x="390" y="584" width="60" height="22" rx="10" ry="10"></rect>
-<text x="420" y="599">wand</text>
+<text x="420" y="599">wall</text>
 </g>
 <path d="M460 595a10 10 0 0 0 10 -10v-44a10 10 0 0 1 10 -10"></path>
 <path d="M360 531a10 10 0 0 1 10 10v76a10 10 0 0 0 10 10"></path>
@@ -262,7 +262,7 @@
 <path d="M380 627h0"></path>
 <path d="M460 627h0"></path>
 <rect x="380" y="616" width="80" height="22" rx="10" ry="10"></rect>
-<text x="420" y="631">norden</text>
+<text x="420" y="631">north</text>
 </g>
 <path d="M460 627a10 10 0 0 0 10 -10v-76a10 10 0 0 1 10 -10"></path>
 <path d="M360 531a10 10 0 0 1 10 10v108a10 10 0 0 0 10 10"></path>
@@ -270,7 +270,7 @@
 <path d="M380 659h5"></path>
 <path d="M455 659h5"></path>
 <rect x="385" y="648" width="70" height="22" rx="10" ry="10"></rect>
-<text x="420" y="663">osten</text>
+<text x="420" y="663">east</text>
 </g>
 <path d="M460 659a10 10 0 0 0 10 -10v-108a10 10 0 0 1 10 -10"></path>
 <path d="M360 531a10 10 0 0 1 10 10v140a10 10 0 0 0 10 10"></path>
@@ -278,7 +278,7 @@
 <path d="M380 691h5"></path>
 <path d="M455 691h5"></path>
 <rect x="385" y="680" width="70" height="22" rx="10" ry="10"></rect>
-<text x="420" y="695">süden</text>
+<text x="420" y="695">south</text>
 </g>
 <path d="M460 691a10 10 0 0 0 10 -10v-140a10 10 0 0 1 10 -10"></path>
 <path d="M360 531a10 10 0 0 1 10 10v172a10 10 0 0 0 10 10"></path>
@@ -286,7 +286,7 @@
 <path d="M380 723h0"></path>
 <path d="M460 723h0"></path>
 <rect x="380" y="712" width="80" height="22" rx="10" ry="10"></rect>
-<text x="420" y="727">westen</text>
+<text x="420" y="727">west</text>
 </g>
 <path d="M460 723a10 10 0 0 0 10 -10v-172a10 10 0 0 1 10 -10"></path>
 </g>
@@ -303,7 +303,7 @@
 <path d="M170 807h130"></path>
 <path d="M360 807h130"></path>
 <rect x="300" y="796" width="60" height="22" rx="10" ry="10"></rect>
-<text x="330" y="811">ende</text>
+<text x="330" y="811">end</text>
 </g>
 <path d="M490 807h10"></path>
 <path d="M500 807h100"></path>
@@ -320,7 +320,7 @@
 <path d="M205 839h0"></path>
 <path d="M275 839h0"></path>
 <rect x="205" y="828" width="70" height="22" rx="10" ry="10"></rect>
-<text x="240" y="843">lerne</text>
+<text x="240" y="843">learn</text>
 </g>
 <path d="M275 839h10"></path>
 <path d="M285 839h10"></path>
@@ -343,7 +343,7 @@
 <path d="M195 923h105"></path>
 <path d="M360 923h105"></path>
 <rect x="300" y="912" width="60" height="22" rx="10" ry="10"></rect>
-<text x="330" y="927">ende</text>
+<text x="330" y="927">end</text>
 </g>
 <path d="M465 923h10"></path>
 <path d="M475 923h125"></path>

@@ -142,7 +142,7 @@ export class Playfield {
 
 class ConditionHandler {
   constructor(operator, condition) {
-    if(operator != "IST" && operator != "NICHT") {
+    if(operator != "IS" && operator != "NOT") {
       throw "Illegal operator " + operator;
     }
     if(!condition || !condition.validates) {
@@ -152,7 +152,7 @@ class ConditionHandler {
     this.condition = condition;
   }
   checkIf(playfield) {
-    return this.condition.validates(playfield) === (this.operator === "NICHT"?false:true);
+    return this.condition.validates(playfield) === (this.operator === "NOT"?false:true);
   }
   toString() {
     return `ConditionHandler::op:${this.operator},cond:${this.condition}`
@@ -355,19 +355,19 @@ class TpCommand extends BaseCommand {
 
 function convertToConditionObject(name) {
   switch(name) {
-    case "HAUS":
+    case "HOUSE":
       return new HomeCondition();
-    case "WAND":
+    case "WALL":
       return new WallCondition();
-    case "NORDEN":
+    case "NORTH":
       return new DirectionCondition(Meeple.NORTH);
-    case "OSTEN":
+    case "EAST":
       return new DirectionCondition(Meeple.EAST);
-    case "SÜDEN":
+    case "SOUTH":
       return new DirectionCondition(Meeple.SOUTH);
-    case "WESTEN":
+    case "WEST":
       return new DirectionCondition(Meeple.WEST);
-    case "ZUFALL":
+    case "RANDOM":
       return new RandomCondition();
     default:
       throw "Unknown condition " + name;
@@ -537,7 +537,7 @@ class SayBuilder {
 class MethodCreationBuilder {
   processAdditionalTokens(tokens) {
     if(tokens[0].type != Tokenizer.PARAM_OR_METHOD) {
-      throw `Illegal token ${tokens[0].name} following LERNE`;
+      throw `Illegal token ${tokens[0].name} following LEARN`;
     }
     this.name = tokens[0].name;
     const astBuilder = new ASTBuilder()
@@ -601,13 +601,13 @@ class GlobalMethodRegistry {
 class ASTBuilder {
   getBuilderForToken(token) {
     if(token.type == Tokenizer.SIMPLE) {
-      if (token.name === "SCHRITT") {
+      if (token.name === "MOVE") {
         return new StepCommandBuilder();
-      } else if (token.name === "LINKS-WENDUNG") {
+      } else if (token.name === "TURNLEFT") {
         return new TurnLeftCommandBuilder();
-      } else if (token.name === "PLATZIEREN") {
+      } else if (token.name === "DROP") {
         return new PlacePackageCommandBuilder();
-      } else if (token.name === "AUFHEBEN") {
+      } else if (token.name === "PICKUP") {
         return new PickupPackageCommandBuilder();
       }
     } else if(token.type == Tokenizer.WITH_CONDITION) {
@@ -686,33 +686,33 @@ class Tokenizer {
   static ELSE = 8
   static AS_LONG_AS = 9
   getToken(str) {
-    // this should be a FSM, to support logging a word like SCHRITT
-    if (str === "SCHRITT") {
-      return new Token(Tokenizer.SIMPLE, "SCHRITT");
-    } else if (str === "LINKS-WENDUNG") {
-      return new Token(Tokenizer.SIMPLE, "LINKS-WENDUNG");
-    } else if (str === "PLATZIEREN") {
-      return new Token(Tokenizer.SIMPLE, "PLATZIEREN");
-    } else if (str === "AUFHEBEN") {
-      return new Token(Tokenizer.SIMPLE, "AUFHEBEN");
-    } else if (str === "WENN") {
-      return new Token(Tokenizer.WITH_CONDITION, "WENN");
-    } else if (str === "WIEDERHOLE") {
-      return new Token(Tokenizer.WITH_INT, "WIEDERHOLE");
-    } else if (str === "LERNE") {
-      return new Token(Tokenizer.METHOD, "LERNE");
-    } else if (str === "ENDE") {
-      return new Token(Tokenizer.END, "ENDE");
-    } else if (str === "SONST") {
-      return new Token(Tokenizer.ELSE, "SONST");
+    // this should be a FSM, to support logging a word like MOVE
+    if (str === "MOVE") {
+      return new Token(Tokenizer.SIMPLE, "MOVE");
+    } else if (str === "TURNLEFT") {
+      return new Token(Tokenizer.SIMPLE, "TURNLEFT");
+    } else if (str === "DROP") {
+      return new Token(Tokenizer.SIMPLE, "DROP");
+    } else if (str === "PICKUP") {
+      return new Token(Tokenizer.SIMPLE, "PICKUP");
+    } else if (str === "IF") {
+      return new Token(Tokenizer.WITH_CONDITION, "IF");
+    } else if (str === "REPEAT") {
+      return new Token(Tokenizer.WITH_INT, "REPEAT");
+    } else if (str === "LEARN") {
+      return new Token(Tokenizer.METHOD, "LEARN");
+    } else if (str === "END") {
+      return new Token(Tokenizer.END, "END");
+    } else if (str === "ELSE") {
+      return new Token(Tokenizer.ELSE, "ELSE");
     } else if (str === "LOG") {
       return new Token(Tokenizer.WITH_STRING, "LOG");
     } else if (str === "SAY") {
       return new Token(Tokenizer.WITH_STRING, "SAY");
     } else if (str === "TP") {
       return new Token(Tokenizer.WITH_2_INT, "TP");
-    } else if (str === "SOLANGE") {
-      return new Token(Tokenizer.AS_LONG_AS, "SOLANGE");
+    } else if (str === "UNTIL") {
+      return new Token(Tokenizer.AS_LONG_AS, "UNTIL");
     } else {
       return new Token(Tokenizer.PARAM_OR_METHOD, str);
     }

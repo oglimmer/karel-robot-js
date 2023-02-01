@@ -1,12 +1,12 @@
-wiederhole solange nicht haus
-  wenn ist zufall
-    links-wendung
-  ende, sonst
-    schritt
-  ende
-  aufheben
-  wenn ist norden
-    platzieren
-  ende
-ende
-say "ich bin am ziel"
+repeat until not house
+  if is random
+    turnleft
+  end, else
+    move
+  end
+  pickup
+  if is north
+    drop
+  end
+end
+say "i am at home"

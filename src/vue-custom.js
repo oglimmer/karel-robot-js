@@ -74,18 +74,18 @@ export const rootComponent = {
             playfield: null,
             selectedId: false,
             running: false,
-            code: "wiederhole solange nicht haus\n" +
-                "  wenn ist zufall\n" +
-                "    links-wendung\n" +
-                "  ende, sonst\n" +
-                "    schritt\n" +
-                "  ende\n" +
-                "  aufheben\n" +
-                "  wenn ist norden\n" +
-                "    platzieren\n" +
-                "  ende\n" +
-                "ende\n" +
-                "say \"ich bin am ziel\"\n"
+            code: "repeat until not house\n" +
+                "  if is random\n" +
+                "    turnleft\n" +
+                "  end, else\n" +
+                "    move\n" +
+                "  end\n" +
+                "  pickup\n" +
+                "  if is north\n" +
+                "    drop\n" +
+                "  end\n" +
+                "end\n" +
+                "say \"i am at home\"\n"
         }
     },
     methods: {

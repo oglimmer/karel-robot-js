@@ -25,13 +25,13 @@ npm ci
 
 ```bash
 echo '
-wiederhole solange nicht haus
-  wenn ist zufall
-    links-wendung
-  ende, sonst
-    schritt
-  ende
-ende
+repeat until not house
+  if is random
+    turnleft
+  end, else
+    move
+  end
+end
 '|node src/cli.js
 ```
 
@@ -63,21 +63,21 @@ A block is one or more commands
 ## example
 
 ```
-lerne linkssonstzufall
-  wenn ist zufall
-    links-wendung
-  ende, sonst
-    schritt
-  ende
-ende
-wiederhole solange nicht haus
-  linkssonstzufall
-ende
-wiederhole 4-mal
-  wenn nicht osten
-    schritt
+learn leftelserandom
+  if is random
+    turnleft
+  end, else
+    move
+  end
+end
+repeat until not house
+  leftelserandom
+end
+repeat 4-times
+  if not east
+    move
     log "move east"
-  ende
-ende
+  end
+end
 say "we have done it!"
 ```

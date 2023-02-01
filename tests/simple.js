@@ -3,53 +3,53 @@
 import { parse } from '../src/interpreter.js';
 
 test('simple_schritt_1', () => {
-  const root = parse(["SCHRITT"]);
+  const root = parse(["MOVE"]);
   expect(root.toString()).toBe("StepCommand");
 });
 
 test('simple_wendung_1', () => {
-  const root = parse(["links-wendung"]);
+  const root = parse(["turnleft"]);
   expect(root.toString()).toBe("TurnLeftCommand");
 });
 
 test('simple_schritt_2', () => {
   const root = parse([
-    "SCHRITT", 
-    "SCHRITT"
+    "MOVE", 
+    "MOVE"
   ]);
   expect(root.toString()).toBe("StepCommand->StepCommand");
 });
 
 test('simple_schritt_3', () => {
   const root = parse([
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "SCHRITT"
+    "MOVE", 
+    "MOVE", 
+    "MOVE", 
+    "MOVE", 
+    "MOVE", 
+    "MOVE", 
+    "MOVE", 
+    "MOVE"
   ]);
   expect(root.toString()).toBe("StepCommand->StepCommand->StepCommand->StepCommand->StepCommand->StepCommand->StepCommand->StepCommand");
 });
 
 test('schritt_wendung_1', () => {
   const root = parse([
-    "SCHRITT", 
-    "LINKS-WENDUNG", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "LINKS-WENDUNG", 
-    "LINKS-WENDUNG", 
-    "SCHRITT", 
-    "LINKS-WENDUNG", 
-    "SCHRITT", 
-    "SCHRITT", 
-    "LINKS-WENDUNG", 
-    "LINKS-WENDUNG", 
-    "LINKS-WENDUNG", 
-    "SCHRITT"
+    "MOVE", 
+    "TURNLEFT", 
+    "MOVE", 
+    "MOVE", 
+    "TURNLEFT", 
+    "TURNLEFT", 
+    "MOVE", 
+    "TURNLEFT", 
+    "MOVE", 
+    "MOVE", 
+    "TURNLEFT", 
+    "TURNLEFT", 
+    "TURNLEFT", 
+    "MOVE"
   ]);
   expect(root.toString()).toBe("StepCommand->TurnLeftCommand->StepCommand->StepCommand->TurnLeftCommand->TurnLeftCommand->StepCommand->TurnLeftCommand->StepCommand->StepCommand->TurnLeftCommand->TurnLeftCommand->TurnLeftCommand->StepCommand");
 });

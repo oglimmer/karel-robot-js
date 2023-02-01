@@ -1,24 +1,26 @@
 
 export default function(hljs) {
     const KEYWORDS = [
-        "SCHRITT",
-        "LINKS-WENDUNG",
-        "AUFHEBEN",
-        "PLATZIEREN",
-        "WENN",
-        "IST",
-        "NICHT",
-        "SOLANGE",
-        "WIEDERHOLE",
-        "-MAL",
-        "ENDE",
-        "SONST",
-        "HAUS",
-        "NORDEN",
-        "OSTEN",
-        "SÜDEN",
-        "WESTEN",
-        "WAND"
+        "MOVE",
+        "TURNLEFT",
+        "PICKUP",
+        "DROP",
+        "IF",
+        "IS",
+        "NOT",
+        "UNTIL",
+        "REPEAT",
+        "-TIMES",
+        "END",
+        "ELSE",
+        "HOUSE",
+        "NORTH",
+        "EAST",
+        "SOUTH",
+        "WEST",
+        "WALL",
+        "RANDOM",
+        "LEARN"
     ];
 
     return {

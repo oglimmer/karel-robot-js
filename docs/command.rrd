@@ -1,44 +1,44 @@
 Diagram(
     Choice(0,
-        ('schritt'),
-        ('links-wendung'),
-        ('aufheben'),
-        ('platzieren'),
+        ('move'),
+        ('turnleft'),
+        ('pickup'),
+        ('drop'),
         NonTerminal('method name as STRING'),
         Stack(
             Sequence(
-                'wiederhole',
+                'repeat',
                 Choice(0,
                     Sequence(
-                        'solange',
-                        Choice(0,'is','nicht'),
-                        Choice(0,'zufall','haus','wand','norden','osten','süden','westen')
+                        'until',
+                        Choice(0,'is','not'),
+                        Choice(0,'random','house','wall','north','east','south','west')
                     ), // Sequence
                     Sequence(
                         NonTerminal('repetition as NUMBER'),
-                        '-mal'
+                        '-times'
                     ) // Sequence
                 ) // Choice
             ),  // Sequence
             NonTerminal('block'), 
-            'ende'
+            'end'
         ), // Stack
         Stack(
             Sequence(
-                'wenn',
-                Choice(0,'is','nicht'),
-                Choice(0,'zufall','haus','wand','norden','osten','süden','westen')
+                'if',
+                Choice(0,'is','not'),
+                Choice(0,'random','house','wall','north','east','south','west')
             ),  // Sequence
             NonTerminal('block'), 
-            'ende'
+            'end'
         ), // Stack
         Stack(
             Sequence(
-                'lerne',
+                'learn',
                 NonTerminal('name as STRING')
             ),  // Sequence
             NonTerminal('block'), 
-            'ende'
+            'end'
         ), // Stack
         Sequence(
             'say',
