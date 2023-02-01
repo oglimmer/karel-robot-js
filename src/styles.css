@@ -21,23 +21,23 @@ button {
     margin: 2px
 }
 .meeple_up {
-  background-image: url(assets/Pixel_Art_Character_Back.jpg);
+  background-image: url(assets/Pixel_Art_Character_Back.png);
   background-size: 48px 48px
 }
 .meeple_left {
-  background-image: url(assets/Pixel_Art_Character_Left_Side.jpg);
+  background-image: url(assets/Pixel_Art_Character_Left_Side.png);
   background-size: 48px 48px
 }
 .meeple_down {
-  background-image: url(assets/Pixel_Art_Character_Front.jpg);
+  background-image: url(assets/Pixel_Art_Character_Front.png);
   background-size: 48px 48px
 }
 .meeple_right {
-  background-image: url(assets/Pixel_Art_Character_Right_Side.jpg);
+  background-image: url(assets/Pixel_Art_Character_Right_Side.png);
   background-size: 48px 48px
 }
 .house {
-  background-image: url(assets/House.jpg);
+  background-image: url(assets/House.png);
   background-size: 48px 48px
 }
 .wall {

@@ -60,8 +60,8 @@ export const UIFieldView = {
         }
     },
     template: `<div class="box" :class="dynamicClasses" @click="onClicked">
-    <div v-if="this.packages > 0">
-      <img src="assets/Paket.jpg" height="24" width="24" />
+    <div v-if="this.packages > 0" style="padding-top:20px">
+      <img src="assets/Paket.png" height="24" width="24" />
       <span style="font-weight:bolder; font-size:1.4em">{{packages}}</span>
     </div>
     </div>`
