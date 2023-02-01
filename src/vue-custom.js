@@ -133,6 +133,7 @@ export const rootComponent = {
                 this.running = true;
                 BaseCommand.abort = false;
                 const root = parse(this.code);
+                this.playfield.clearHistory();
                 await root.run(this.playfield);
             } catch (err) {
                 alert(err)

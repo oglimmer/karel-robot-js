@@ -20,7 +20,9 @@ export default function(hljs) {
         "WEST",
         "WALL",
         "RANDOM",
-        "LEARN"
+        "RANDOM10",
+        "LEARN",
+        "BEENHERE"
     ];
 
     return {

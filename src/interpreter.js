@@ -41,6 +41,7 @@ export class Meeple {
     this.playfield.meeple = this;
   }
   step() {
+    const fromField = this.field
     let newField;
     switch(this.direction) {
     case Meeple.NORTH:
@@ -58,6 +59,10 @@ export class Meeple {
     }
     if (newField && !newField.isWall()) {
       this.field = newField;
+      this.playfield.moveHistory.push({
+        from: fromField,
+        to: this.field
+      });
     }
   }
   turnLeft() {
@@ -114,12 +119,16 @@ export class Playfield {
     this.y = y;
     this.meeple = null;
     this.packages = 0;
+    this.moveHistory = [];
     for (let iy = 0 ; iy < y ; iy++ ) {
      for (let ix = 0 ; ix < x ; ix++ ) {
         const newObj = new ObjClazz(ix, iy, this);
         this.fields.push(newObj);
       }
     }
+  }
+  clearHistory() {
+    this.moveHistory = [];
   }
   getMeeple() {
     return this.meeple;
@@ -368,7 +377,11 @@ function convertToConditionObject(name) {
     case "WEST":
       return new DirectionCondition(Meeple.WEST);
     case "RANDOM":
-      return new RandomCondition();
+      return new RandomCondition(.5);
+    case "RANDOM10":
+      return new RandomCondition(.1);
+    case "BEENHERE":
+      return new BeenhereCondition();
     default:
       throw "Unknown condition " + name;
     }
@@ -422,14 +435,26 @@ class WallCondition {
 }
 
 class RandomCondition {
+  constructor(chance) {
+    this.chance = chance;
+  }
   validates(playfield) {
-    return Math.random() > 0.5;
+    return Math.random() > this.chance;
   }
   toString() {
     return "RandomCondition";
   }
 }
 
+class BeenhereCondition {
+  validates(playfield) {
+    const currentMeepleField = playfield.getMeeple().getField();
+    return playfield.moveHistory.some(e => e.to === currentMeepleField || e.from === currentMeepleField);
+  }
+  toString() {
+    return "BeenhereCondition";
+  }
+}
 
 // ************************************************************************
 /* Builders for Commands */
@@ -627,6 +652,7 @@ class ASTBuilder {
     } else if(token.type == Tokenizer.WITH_2_INT) {
       return new TpBuilder();
     }
+    throw "Failed to parse " + token;
   }
   build(tokens /*type:Token*/, stopOnTokenType /*nullable*/) {
     let root = undefined

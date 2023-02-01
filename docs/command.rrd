@@ -12,7 +12,7 @@ Diagram(
                     Sequence(
                         'until',
                         Choice(0,'is','not'),
-                        Choice(0,'random','house','wall','north','east','south','west')
+                        Choice(0,'random','random10','house','wall','north','east','south','west','beenhere')
                     ), // Sequence
                     Sequence(
                         NonTerminal('repetition as NUMBER'),
@@ -27,7 +27,7 @@ Diagram(
             Sequence(
                 'if',
                 Choice(0,'is','not'),
-                Choice(0,'random','house','wall','north','east','south','west')
+                Choice(0,'random','random10','house','wall','north','east','south','west','beenhere')
             ),  // Sequence
             NonTerminal('block'), 
             'end'
