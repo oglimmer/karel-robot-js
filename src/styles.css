@@ -18,7 +18,7 @@ body {
     border: 1px solid black !important;
 }
 button {
-    margin: 2px
+    margin: 2px;
 }
 .meeple_up {
   background-image: url(assets/Pixel_Art_Character_Back.png);
@@ -42,7 +42,57 @@ button {
 }
 .wall {
   background-image: url(assets/Wall.jpg);
-  background-size: 48px 48px
+  background-size: 48px 48px;
+}
+
+@media (max-width: 490px) {
+  .box {
+      height:40px;
+      width: 40px;
+  }
+  .meeple_up {
+    background-size: 40px 40px;
+  }
+  .meeple_left {
+    background-size: 40px 40px;
+  }
+  .meeple_down {
+    background-size: 40px 40px;
+  }
+  .meeple_right {
+    background-size: 40px 40px;
+  }
+  .house {
+    background-size: 40px 40px;
+  }
+  .wall {
+    background-size: 40px 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .box {
+      height:34px;
+      width: 34px;
+  }
+  .meeple_up {
+    background-size: 34px 34px;
+  }
+  .meeple_left {
+    background-size: 34px 34px;
+  }
+  .meeple_down {
+    background-size: 34px 34px;
+  }
+  .meeple_right {
+    background-size: 34px 34px;
+  }
+  .house {
+    background-size: 34px 34px;
+  }
+  .wall {
+    background-size: 34px 34px;
+  }
 }
 
 .columnb {
